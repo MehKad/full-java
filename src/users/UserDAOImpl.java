@@ -24,7 +24,7 @@ public class UserDAOImpl implements UserDAO {
          ResultSet rs = stm.executeQuery();
          if (rs.next()) {
             int c = rs.getInt(1);
-            if (c == 0) {
+            if (c > 0) {
                return true;
             } else {
                return false;
