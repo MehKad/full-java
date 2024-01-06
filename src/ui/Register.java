@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class Login extends JFrame {
+public class Register extends JFrame {
 
    private JLabel usernameL;
    private JLabel passwordL;
@@ -17,8 +17,8 @@ public class Login extends JFrame {
    private JButton login;
    private JButton register;
 
-   public Login() {
-      setTitle("Login");
+   public Register() {
+      setTitle("Register");
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setSize(300, 400);
 
@@ -51,10 +51,18 @@ public class Login extends JFrame {
       login.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
+            new Login();
+            dispose();
+         }
+      });
+
+      register.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
             String username = usernameF.getText();
             String password = passwordF.getText();
             try {
-               Socket soc = new Socket("localhost", 5000);
+               Socket soc = new Socket("localhost", 6000);
 
                PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
 
@@ -70,23 +78,11 @@ public class Login extends JFrame {
          }
       });
 
-      register.addActionListener(new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            new Register();
-            dispose();
-         }
-      });
-
       setVisible(true);
    }
 
    private void addEmptyLabel() {
       add(new JLabel());
-   }
-
-   public static void main(String[] args) {
-      new Login();
    }
 
 }

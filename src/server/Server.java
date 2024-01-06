@@ -6,12 +6,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import ui.Home;
+import ui.Login;
 import users.*;
 
 public class Server {
 
    public Server() {
       login();
+      // register();
    }
 
    private void login() {
@@ -41,6 +43,41 @@ public class Server {
                new Home(user);
             } else {
                System.out.println("Wrong username or password.");
+            }
+         }
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }
+
+   private void register() {
+      try {
+         ServerSocket soc = new ServerSocket(6000);
+
+         System.out.println("Server is waiting for connections...");
+
+         while (true) {
+
+            Socket clientSoc = soc.accept();
+
+            System.out.println("Client connected");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSoc.getInputStream()));
+
+            String username = in.readLine();
+            String password = in.readLine();
+
+            System.out.println("Received data from client");
+
+            User user = new User(username, password);
+
+            UserDAO udao = new UserDAOImpl();
+            if (udao.registerUser(user)) {
+               System.out.println("User Added successfully!");
+               new Login();
+            } else {
+               System.out.println("User not added.");
             }
          }
 
