@@ -56,12 +56,10 @@ public class Login extends JFrame {
             try {
                Socket soc = new Socket("localhost", 5000);
 
-               PrintWriter out = new PrintWriter(soc.getOutputStream());
+               PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
 
                out.println(username);
                out.println(password);
-
-               out.flush();
 
                out.close();
                soc.close();
