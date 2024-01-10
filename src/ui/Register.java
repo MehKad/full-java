@@ -62,10 +62,11 @@ public class Register extends JFrame {
             String username = usernameF.getText();
             String password = passwordF.getText();
             try {
-               Socket soc = new Socket("localhost", 6000);
+               Socket soc = new Socket("localhost", 5000);
 
                PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
 
+               out.println("REGISTER");
                out.println(username);
                out.println(password);
 

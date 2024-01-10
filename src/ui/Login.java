@@ -1,6 +1,9 @@
 package ui;
 
 import javax.swing.*;
+
+import users.UserDAOImpl;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,22 +34,22 @@ public class Login extends JFrame {
       login = new JButton("Login");
       register = new JButton("Register");
 
-      setLayout(new GridLayout(8, 2));
+      setLayout(new GridLayout(3, 2));
 
-      addEmptyLabel();
-      addEmptyLabel();
+      // addEmptyLabel();
+      // addEmptyLabel();
       add(usernameL);
       add(usernameF);
-      addEmptyLabel();
-      addEmptyLabel();
+      // addEmptyLabel();
+      // addEmptyLabel();
       add(passwordL);
       add(passwordF);
-      addEmptyLabel();
-      addEmptyLabel();
+      // addEmptyLabel();
+      // addEmptyLabel();
       add(login);
       add(register);
-      addEmptyLabel();
-      addEmptyLabel();
+      // addEmptyLabel();
+      // addEmptyLabel();
 
       login.addActionListener(new ActionListener() {
          @Override
@@ -58,6 +61,7 @@ public class Login extends JFrame {
 
                PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
 
+               out.println("LOGIN");
                out.println(username);
                out.println(password);
 
@@ -81,9 +85,9 @@ public class Login extends JFrame {
       setVisible(true);
    }
 
-   private void addEmptyLabel() {
-      add(new JLabel());
-   }
+   // private void addEmptyLabel() {
+   // add(new JLabel());
+   // }
 
    public static void main(String[] args) {
       new Login();
